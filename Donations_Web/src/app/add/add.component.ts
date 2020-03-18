@@ -32,7 +32,7 @@ export class AddComponent implements OnInit {
     this.dataService.saveDonation(donation).subscribe(data => console.log(data));
     this.donationForm.reset();
 
-    console.warn('Your donation has been submitted', this.donationForm);
+    console.warn('Your donation has been submitted', donation);
   }
 
 }
