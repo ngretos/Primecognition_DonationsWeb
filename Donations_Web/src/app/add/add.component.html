@@ -1,0 +1,35 @@
+<p>New Donation</p>
+<form [formGroup]="donationForm" (ngSubmit)="onSubmit()">
+
+	<div>
+		<label for="name">
+			Name
+		</label>
+		<input id="name" type="text" formControlName="name">
+	</div>
+
+	<div>
+		<label for="surname">
+			Surname
+		</label>
+		<input id="surname" type="text" formControlName="surname">
+	</div>
+
+	<div>
+		<label for="amount">
+			Amount
+		</label>
+		<input id="amount" type="text" formControlName="amount">
+	</div>
+
+	<div>
+		<label for="currency">
+			Currency
+		</label>
+		<input id="currency" type="text" formControlName="currency">
+	</div>
+	<br />
+	<nav>
+		<button routerLink="" routerLinkActive="active">Cancel</button> <button class="button">Sumbit Donation</button>
+	</nav>
+</form>
