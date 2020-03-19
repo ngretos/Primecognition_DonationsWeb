@@ -9,6 +9,7 @@ import { AddComponent } from './add/add.component';
 import { ShowComponent } from './show/show.component';
 import { InitialpageComponent } from './initialpage/initialpage.component';
 import { DonationslistComponent } from './show/donationslist/donationslist.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: 'add', component: AddComponent },
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     ),
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
