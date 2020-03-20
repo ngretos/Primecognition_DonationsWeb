@@ -1,12 +1,32 @@
 <p>New Donation</p><br>
 <form [formGroup]="donationForm" (ngSubmit)="onSubmit()">
 
-	<div>
+	<mat-grid-list cols="2" rowHeight="2:1">
+		<mat-grid-tile-header>asdad</mat-grid-tile-header>
+		<mat-grid-tile>
+			<div>
+				<label for="name">
+					Name
+				</label>
+			</div>
+		</mat-grid-tile>
+		<mat-grid-tile> <input id="name" type="text" formControlName="name">
+		</mat-grid-tile>
+		<mat-grid-tile>3</mat-grid-tile>
+		<mat-grid-tile>4</mat-grid-tile>
+		<mat-grid-tile>1</mat-grid-tile>
+		<mat-grid-tile>2</mat-grid-tile>
+		<mat-grid-tile>3</mat-grid-tile>
+		<mat-grid-tile>4</mat-grid-tile>
+	</mat-grid-list>
+
+
+	<!-- <div>
 		<label for="name">
 			Name
 		</label>
 		<input id="name" type="text" formControlName="name">
-	</div>
+	</div> -->
 
 	<div>
 		<label for="surname">
@@ -30,6 +50,7 @@
 	</div>
 	<br />
 	<nav>
-		<button routerLink="" routerLinkActive="active">Cancel</button> <button class="button">Sumbit Donation</button>
+		<button mat-raised-button color="primary" routerLink="" routerLinkActive="active"> Back/Cancel</button>&nbsp;
+		<button mat-raised-button color="primary"> Sumbit Donation</button>
 	</nav>
 </form>
