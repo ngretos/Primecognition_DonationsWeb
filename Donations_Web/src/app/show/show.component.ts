@@ -2,22 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { DonationslistComponent } from './donationslist/donationslist.component';
 
 @Component({
-  selector: 'app-show',
-  templateUrl: './show.component.html',
-  styleUrls: ['./show.component.css']
+    selector: 'app-show',
+    templateUrl: './show.component.html',
+    styleUrls: ['./show.component.css']
 })
 export class ShowComponent implements OnInit {
 
-  donationsList: DonationslistComponent;
+    donationsList: DonationslistComponent;
 
-  constructor(donationsList: DonationslistComponent) {
-    this.donationsList = donationsList;
-  }
+    constructor(donationsList: DonationslistComponent) {
+        this.donationsList = donationsList;
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  showDonations() {
-    return this.donationsList.getDonations();
-  }
+    //   showDonations() {
+    //     return this.donationsList.getDonations();
+    //   }
 }

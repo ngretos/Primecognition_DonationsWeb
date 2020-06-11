@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DataService } from '../app.dataservice';
+import { DonationsRestClientService } from '../rest/donations.rest.clientservice';
+import { Donation } from '../model/donation';
 
 @Component({
   selector: 'app-add',
@@ -9,9 +10,10 @@ import { DataService } from '../app.dataservice';
 })
 export class AddComponent implements OnInit {
   donationForm: FormGroup;
-  private dataService: DataService;
 
-  constructor(private formBuilder: FormBuilder, dataService: DataService) {
+  private dataService: DonationsRestClientService;
+
+  constructor(private formBuilder: FormBuilder, dataService: DonationsRestClientService) {
     this.dataService = dataService;
     this.donationForm = this.formBuilder.group({
       name: '',
@@ -24,10 +26,8 @@ export class AddComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit() {
-    const donation = {
-      name: this.donationForm.get('name').value, surname: this.donationForm.get('surname').value,
-      amount: this.donationForm.get('amount').value, currency: this.donationForm.get('currency').value
-    };
+    const donation = new Donation(this.donationForm.get('name').value, this.donationForm.get('surname').value,
+      this.donationForm.get('amount').value, this.donationForm.get('currency').value);
 
     this.dataService.saveDonation(donation).subscribe(data => console.log(data));
     this.donationForm.reset();

@@ -8,19 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 @Entity
 @Table(name = "\"Donation\"")
-@NamedQuery(name = "findAll", query = "SELECT d FROM Donation d")
+@NamedQueries({@NamedQuery(name = Donation.FETCH_ALL, query = "SELECT d FROM Donation d"), 
+				@NamedQuery(name = Donation.COUNT, query = "SELECT count(d) FROM Donation d")})
+
 @XmlRootElement(name = "donation")
 public class Donation implements Serializable {
   private static final long serialVersionUID = 1L;
   
-  public static final String FETCH_ALL = "findAll";
+  public static final String FETCH_ALL = "fetchAll";
+  public static final String COUNT = "count";
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,11 +42,11 @@ public class Donation implements Serializable {
   private BigDecimal amount;
   
   @Column(name = "\"Currency\"")
-  private String currency;
+  private Byte currency;
   
   public Donation() {}
   
-  public Donation(String name, String surname, BigDecimal amount, String currency) {
+  public Donation(String name, String surname, BigDecimal amount, Byte currency) {
     this.amount = amount;
     this.currency = currency;
     this.name = name;
@@ -84,12 +89,12 @@ public class Donation implements Serializable {
     this.amount = amount;
   }
   
-  public String getCurrency() {
+  public Byte getCurrency() {
     return this.currency;
   }
   
   @XmlElement
-  public void setCurrency(String currency) {
+  public void setCurrency(Byte currency) {
     this.currency = currency;
   }
 }

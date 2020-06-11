@@ -10,6 +10,7 @@ import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -26,10 +27,22 @@ public class DonationsService {
 	DonationsDao donationDAO = (DonationsDao) this.context.getBean("donationsDAO");
 
 	@GET
-	@Path("/donations")
+	@Path("/donations/count")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Donation> getDonations() {
-		return this.donationDAO.fetchAll();
+	public Long getDonations() {
+		Long c = this.donationDAO.count();
+		return c;
+	}
+
+	@GET
+	@Path("/donations/page")
+	@Produces({ MediaType.APPLICATION_JSON })
+//	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED })
+	public List<Donation> getDonations(@QueryParam("filter") String filter, @QueryParam("sortOrder") String sortOrder,
+			@QueryParam("pageNumber") Byte pageNumber, @QueryParam("pageSize") Byte pageSize,
+			@Context HttpServletResponse servletResponse) throws IOException {
+		
+		return this.donationDAO.fetchPage(filter, sortOrder, pageNumber, pageSize);
 	}
 
 	@POST
@@ -49,7 +62,7 @@ public class DonationsService {
 
 	@OPTIONS
 	@Path("/donations")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON })
 	public String getSupportedOperations() {
 		return "<operations>GET, POST</operations>";
 	}

@@ -1,5 +1,29 @@
-<p>Donations</p><br>
+<h2>Donations</h2>
 
-<div *ngFor="let donation of getDonations()">
-	{{donation.name}} - {{donation.surname}} - {{donation.amount}} - {{donation.currency}}
+<div>
+    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <mat-table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let donation"> {{donation.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="surname">
+            <mat-header-cell *matHeaderCellDef> Surname </mat-header-cell>
+            <mat-cell *matCellDef="let donation"> {{donation.surname}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let donation"> {{donation.amount | number: '1.2-2'}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="currencyStr">
+            <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
+            <mat-cell *matCellDef="let donation"> {{donation.currencyStr}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+    <mat-paginator [length]="donationsCount" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

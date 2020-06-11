@@ -1,54 +1,32 @@
-<p>New Donation</p><br>
+<h2>New Donation</h2>
+
 <form [formGroup]="donationForm" (ngSubmit)="onSubmit()">
 
-	<mat-grid-list cols="2" rowHeight="2:1">
-		<mat-grid-tile-header>asdad</mat-grid-tile-header>
-		<mat-grid-tile>
-			<div>
-				<label for="name">
-					Name
-				</label>
-			</div>
-		</mat-grid-tile>
-		<mat-grid-tile> <input id="name" type="text" formControlName="name">
-		</mat-grid-tile>
-		<mat-grid-tile>3</mat-grid-tile>
-		<mat-grid-tile>4</mat-grid-tile>
-		<mat-grid-tile>1</mat-grid-tile>
-		<mat-grid-tile>2</mat-grid-tile>
-		<mat-grid-tile>3</mat-grid-tile>
-		<mat-grid-tile>4</mat-grid-tile>
-	</mat-grid-list>
+	<p>
+		<mat-form-field>
+			<input matInput formControlName="name" placeholder="Name" required>
+		</mat-form-field>
+	</p>
+	<p>
+		<mat-form-field>
+			<input matInput formControlName="surname" placeholder="Surname" required>
+		</mat-form-field>
+	</p>
+	<p>
+		<mat-form-field>
+			<input matInput formControlName="amount" placeholder="Amount" required>
+		</mat-form-field>
+	</p>
+	<p>
+		<mat-form-field placeholder="Currency" required>
+			<mat-label>Currency</mat-label>
+			<mat-select formControlName="currency">
+				<mat-option value="1">EUR</mat-option>
+				<mat-option value="2">USD</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</p>
 
-
-	<!-- <div>
-		<label for="name">
-			Name
-		</label>
-		<input id="name" type="text" formControlName="name">
-	</div> -->
-
-	<div>
-		<label for="surname">
-			Surname
-		</label>
-		<input id="surname" type="text" formControlName="surname">
-	</div>
-
-	<div>
-		<label for="amount">
-			Amount
-		</label>
-		<input id="amount" type="text" formControlName="amount">
-	</div>
-
-	<div>
-		<label for="currency">
-			Currency
-		</label>
-		<input id="currency" type="text" formControlName="currency">
-	</div>
-	<br />
 	<nav>
 		<button mat-raised-button color="primary" routerLink="" routerLinkActive="active"> Back/Cancel</button>&nbsp;
 		<button mat-raised-button color="primary"> Sumbit Donation</button>
